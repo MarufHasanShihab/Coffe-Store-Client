@@ -1,10 +1,11 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
 
   return (
     <div>
-      <h1 className="text-red-400 underline">Hello world</h1>
+      <Outlet/>
     </div>
   )
 }
