@@ -1,19 +1,34 @@
+import { toast } from "react-toastify";
 import BackButton from "./../Components/BackButton";
 
 const AddCoffe = () => {
-    const handleAddCoffe = e=>{
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value.trim();
-        const chef = form.chef.value.trim();
-        const supplier = form.supplier.value.trim();
-        const taste = form.taste.value.trim();
-        const category = form.category.value.trim();
-        const details = form.details.value.trim();
-        const photo = form.photo.value.trim();
-        const coffeFormData = {name,chef,supplier,taste,category,details,photo}
-        console.log(coffeFormData)
-    }
+  const handleAddCoffe = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    const chef = form.chef.value.trim();
+    const price = form.price.value.trim();
+    const taste = form.taste.value.trim();
+    const category = form.category.value.trim();
+    const details = form.details.value.trim();
+    const photo = form.photo.value.trim();
+    const newCoffe = { name, chef, price, taste, category, details, photo };
+    fetch("http://localhost:5000/coffes", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffe),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.insertedId){
+            toast.success("Coffe Added Usecessfully!");
+            form.reset();
+            return
+        }
+      });
+  };
   return (
     <div>
       <div className="py-4 px-12">
@@ -41,6 +56,7 @@ const AddCoffe = () => {
                   type="text"
                   className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
                   placeholder="Enter coffee name"
+                  required
                 />
               </div>
               <div>
@@ -52,17 +68,19 @@ const AddCoffe = () => {
                   type="text"
                   className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
                   placeholder="Enter coffee chef"
+                  required
                 />
               </div>
               <div>
                 <label className="text-[#1a1919]/80 text-xl font-semibold font-['Raleway'] leading-[30px]">
-                  Supplier
+                  Price
                 </label>
                 <input
-                  name="supplier"
-                  type="text"
+                  name="price"
+                  type="number"
                   className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
                   placeholder="Enter coffee supplier"
+                  required
                 />
               </div>
               <div>
@@ -74,6 +92,7 @@ const AddCoffe = () => {
                   type="text"
                   className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
                   placeholder="Enter coffee taste"
+                  required
                 />
               </div>
               <div>
@@ -85,6 +104,7 @@ const AddCoffe = () => {
                   type="text"
                   className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
                   placeholder="Enter coffee category"
+                  required
                 />
               </div>
               <div>
@@ -96,6 +116,7 @@ const AddCoffe = () => {
                   type="text"
                   className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
                   placeholder="Enter coffee details"
+                  required
                 />
               </div>
             </div>
@@ -108,6 +129,7 @@ const AddCoffe = () => {
                 type="text"
                 className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all "
                 placeholder="Enter photo URL"
+                required
               />
             </div>
 
