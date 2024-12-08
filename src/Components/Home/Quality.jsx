@@ -38,7 +38,7 @@ const Quality = () => {
                 {
                     qualites?.map(quality => (
                         <div key={quality.id} className="space-y-4">
-                            <img src={quality.img} alt="" className="w-[70px]" />
+                            <img src={quality.img} alt="" className="w-[60px]" />
                             <h3 className="text-[#331A15] font-rancho text-[35px] font-normal">{quality.title}</h3>
                             <p className="text-[#1B1A1A] text-base font-relway">{quality.des}</p>
                         </div>
