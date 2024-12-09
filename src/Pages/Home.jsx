@@ -7,7 +7,6 @@ import Products from "../Components/Home/Products";
 
 const Home = () => {
     const coffes = useLoaderData();
-    console.log(coffes)
     return (
         <div>
             <Hero/>
