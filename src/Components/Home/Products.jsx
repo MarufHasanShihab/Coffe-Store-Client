@@ -37,7 +37,7 @@ const Products = ({ coffes }) => {
               <Link to={`/coffe-details/${coffe._id}`} className="p-2 w-[30px] bg-[#D2B48C] rounded-[5px] shadow-sm">
                 <FaEye />
               </Link>
-              <Link className="p-2 w-[30px] bg-[#3C393B] rounded-[5px] shadow-sm">
+              <Link to={`/update-coffe/${coffe._id}`} className="p-2 w-[30px] bg-[#3C393B] rounded-[5px] shadow-sm">
                 <MdEdit />
               </Link>
               <button className="p-2 w-[30px] bg-[#EA4744] rounded-[5px] shadow-sm">
