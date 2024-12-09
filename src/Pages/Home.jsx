@@ -11,7 +11,7 @@ const Home = () => {
         <div>
             <Hero/>
             <Quality/>
-            <Products coffes={coffes}/>
+            <Products loadedCoffe={coffes}/>
             <FollowUs/>
         </div>
     );

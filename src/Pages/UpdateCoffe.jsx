@@ -145,7 +145,7 @@ const UpdateCoffe = () => {
               <div className="!mt-12 w-full">
                 <button
                   type="submit"
-                  className="py-2.5 px-7 w-full text-2xl font-semibold tracking-wider rounded-md bg-[#d2b48c] border-[2px] border-[#331A15] text-[#331A15] font-rancho  focus:outline-none">
+                  className="py-2.5 px-7 w-full text-1xl md:text-2xl font-semibold tracking-wider rounded-md bg-[#d2b48c] border-[2px] border-[#331A15] text-[#331A15] font-rancho  focus:outline-none">
                   Update Coffee Details
                 </button>
               </div>

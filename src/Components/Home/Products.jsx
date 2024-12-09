@@ -2,8 +2,25 @@ import { FaEye } from "react-icons/fa";
 import Title from "../Title";
 import { Link } from "react-router-dom";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
-const Products = ({ coffes }) => {
+const Products = ({ loadedCoffe }) => {
+  const [coffes,setCoffes]= useState(loadedCoffe)
+  const handleDeleteCoffe = (id)=>{
+    fetch(`http://localhost:5000/coffes/${id}`,{
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if(data.deletedCount>0){
+        const remaning = coffes.filter(coffe => coffe._id !== id);
+        setCoffes(remaning)
+        toast.success("Coffe Deleted Sucessfully!")
+        return
+      }
+    })
+  }
   return (
     <div className="p-24">
       <Title subTitle="--- Sip & Savor ---" title="Our Popular Products" />
@@ -40,7 +57,7 @@ const Products = ({ coffes }) => {
               <Link to={`/update-coffe/${coffe._id}`} className="p-2 w-[30px] bg-[#3C393B] rounded-[5px] shadow-sm">
                 <MdEdit />
               </Link>
-              <button className="p-2 w-[30px] bg-[#EA4744] rounded-[5px] shadow-sm">
+              <button onClick={()=>handleDeleteCoffe(coffe._id)} className="p-2 w-[30px] bg-[#EA4744] rounded-[5px] shadow-sm">
                 <MdDelete />
               </button>
             </div>
