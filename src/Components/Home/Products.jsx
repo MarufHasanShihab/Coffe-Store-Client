@@ -4,22 +4,40 @@ import { Link } from "react-router-dom";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const Products = ({ loadedCoffe }) => {
   const [coffes,setCoffes]= useState(loadedCoffe)
   const handleDeleteCoffe = (id)=>{
-    fetch(`http://localhost:5000/coffes/${id}`,{
-      method: "DELETE"
-    })
-    .then(res => res.json())
-    .then(data =>{
-      if(data.deletedCount>0){
-        const remaning = coffes.filter(coffe => coffe._id !== id);
-        setCoffes(remaning)
-        toast.success("Coffe Deleted Sucessfully!")
-        return
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffes/${id}`,{
+          method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data =>{
+          if(data.deletedCount>0){
+            const remaning = coffes.filter(coffe => coffe._id !== id);
+            setCoffes(remaning)
+            // toast.success("Coffe Deleted Sucessfully!")
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your coffe has been deleted.",
+              icon: "success"
+            });
+            return
+          }
+        })
       }
-    })
+    });
   }
   return (
     <div className="p-24">
