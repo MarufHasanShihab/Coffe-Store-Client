@@ -11,7 +11,7 @@ const Signup = () => {
     const password = form.password.value;
     createUser(email, password)
       .then((result) => {
-        const user = { email, chartAt: result.user.metadata.creationTime };
+        const user = { email, creatAt: result.user.metadata.creationTime };
         fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
