@@ -48,6 +48,9 @@ const Users = () => {
                   Email
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Last Sign In
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Created At
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -60,13 +63,11 @@ const Users = () => {
                 <tr key={user._id}>
                   <td className="px-6 py-4 whitespace-nowrap">{user._id}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{user.lastSignInTime}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {user.creatAt}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <button className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">
-                      Edit
-                    </button>
                     <button
                       onClick={() => handleDeleteUser(user._id)}
                       className="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">

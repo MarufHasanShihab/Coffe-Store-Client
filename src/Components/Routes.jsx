@@ -8,6 +8,7 @@ import UpdateCoffe from "./../Pages/UpdateCoffe";
 import ErrorPage from "../Pages/ErrorPage";
 import Signup from "../Pages/Signup";
 import Users from "../Pages/Users";
+import Signin from "../Pages/Signin";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <Signup/>
+      },
+      {
+        path: "sign-in",
+        element: <Signin/>
       },
       {
         path: "/users",
