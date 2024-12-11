@@ -11,18 +11,22 @@ const Signup = () => {
     const password = form.password.value;
     createUser(email, password)
       .then((result) => {
-        const user = {email,chartAt:result.user.metadata.creationTime};
-         fetch('http://localhost:5000/users',{
+        const user = { email, chartAt: result.user.metadata.creationTime };
+        fetch("http://localhost:5000/users", {
           method: "POST",
-          headers:{
-            "content-type":"application/json"
+          headers: {
+            "content-type": "application/json",
           },
-          body: JSON.stringify(user)
-         })
-         .then(res => res.json())
-         .then(data =>{
-          console.log(data)
-         })
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Users Created Sucessfully!");
+              form.reset();
+              return;
+            }
+          });
       })
       .catch((error) => {
         toast.error(error.code.split("/")[1].split("-").join(" "));
